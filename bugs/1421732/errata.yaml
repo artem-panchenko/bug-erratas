@@ -1,0 +1,34 @@
+description: "Some description of bug/fix"
+patch-scenario:
+  actions:
+    - id: 1
+      type: service-stop
+      target: [controller-role]
+      service: '.*neutron-server'
+      command:
+    - id: 2
+      type: 
+      target: [controller-role]
+      service: '.*neutron-server'
+      command: 'pkill -9 "*neutron-server*"'
+    - id: 3
+      type: service-start
+      target: [controller-role]
+      service: '.*neutron-server'
+      command:
+    - id: 4
+      type: run_command
+      target: [compute-role]
+      service: '.*openvswitch.*'
+      command:
+    - id: 5
+      type: service-restart
+      target: [compute-role]
+      service: '.*openvswitch.*'
+      command:
+packages:
+system-tests:
+  custom-groups: false
+  performance-tests: true
+  performance-custom-groups: false
+integration-tests:
