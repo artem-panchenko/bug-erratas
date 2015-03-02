@@ -28,7 +28,7 @@ patch-scenario:
       command:
     - id: 6
       type: server_reboot
-      target: [compute_role]
+      target: [cinder_role]
       service: '.*openvswitch.*'
       command:
 verify-scenario:
