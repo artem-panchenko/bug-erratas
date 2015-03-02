@@ -37,7 +37,7 @@ verify-scenario:
       type: run_command
       target: [master]
       service: 
-      command: 'fuel nodes | grep -q False && false'
+      command: '! grep -q False <(fuel nodes)'
 packages:
 system-tests:
   custom-groups: false
