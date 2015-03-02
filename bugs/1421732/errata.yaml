@@ -31,6 +31,13 @@ patch-scenario:
       target: [compute_role]
       service: '.*openvswitch.*'
       command:
+verify-scenario:
+  actions:
+    - id: 1
+      type: run_command
+      target: [master]
+      service: 
+      command: 'fuel nodes | grep -q False && false'
 packages:
 system-tests:
   custom-groups: false
