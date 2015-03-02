@@ -2,28 +2,33 @@ description: "Some description of bug/fix"
 patch-scenario:
   actions:
     - id: 1
-      type: service-stop
-      target: [controller-role]
+      type: service_stop
+      target: [controller_role]
       service: '.*neutron-server'
       command:
     - id: 2
-      type: 
-      target: [controller-role]
+      type: run_command 
+      target: [controller_role]
       service: '.*neutron-server'
-      command: 'pkill -9 "*neutron-server*"'
+      command: 'pkill -9 "*neutron-server*" ||:'
     - id: 3
-      type: service-start
-      target: [controller-role]
+      type: service_start
+      target: [controller_role]
       service: '.*neutron-server'
       command:
     - id: 4
       type: run_command
-      target: [compute-role]
+      target: [compute_role]
       service: '.*openvswitch.*'
       command:
     - id: 5
-      type: service-restart
-      target: [compute-role]
+      type: service_restart
+      target: [compute_role]
+      service: '.*openvswitch.*'
+      command:
+    - id: 6
+      type: server_reboot
+      target: [compute_role]
       service: '.*openvswitch.*'
       command:
 packages:
