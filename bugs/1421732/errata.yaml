@@ -20,7 +20,7 @@ patch-scenario:
       type: run_command
       target: [compute_role]
       service: '.*openvswitch.*'
-      command:
+      command: 'ping -q -c 1 -w 1 8.8.8.8'
     - id: 5
       type: service_restart
       target: [compute_role]
