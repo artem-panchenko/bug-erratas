@@ -34,10 +34,15 @@ patch-scenario:
 verify-scenario:
   actions:
     - id: 1
+      type: upload_script
+      target: [controller_role, compute_role]
+      script: 'test_file.sh'
+      upload_path: '/tmp/'
+    - id: 2
       type: run_command
-      target: [master]
+      target: [controller_role, compute_role]
       service: 
-      command: '! grep -q False <(fuel nodes)'
+      command: 'chmod +x /tmp/test_file.sh && /tmp/test_file.sh'
 packages:
 system-tests:
   custom-groups: false
